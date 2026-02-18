@@ -184,19 +184,20 @@ export default function History() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    async function load() {
-      setError('');
-      setLoading(true);
-      try {
-        const res = await api.get('/history', { params: { limit: 250 } });
-        setItems(res.data.items || []);
-      } catch (e) {
-        setError(e?.response?.data?.error || 'Failed to load history');
-      } finally {
-        setLoading(false);
-      }
+  async function load() {
+    setError('');
+    setLoading(true);
+    try {
+      const res = await api.get('/history', { params: { limit: 250 } });
+      setItems(res.data.items || []);
+    } catch (e) {
+      setError(e?.response?.data?.error || 'Failed to load history');
+    } finally {
+      setLoading(false);
     }
+  }
+
+  useEffect(() => {
     load();
   }, []);
 
@@ -208,8 +209,8 @@ export default function History() {
         <div className="pt-card" style={{ flex: '1 1 100%' }}>
           <div className="pt-row">
             <h3 className="pt-h3">History</h3>
-            <button className="pt-btn" onClick={() => window.location.reload()} type="button">
-              Reload
+            <button className="pt-btn" onClick={load} type="button" disabled={loading}>
+              {loading ? 'Reloading…' : 'Reload'}
             </button>
           </div>
 
