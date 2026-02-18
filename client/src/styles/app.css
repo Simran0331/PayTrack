@@ -1,0 +1,50 @@
+:root { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+body { margin: 0; background: #0b1020; color: #e8ecff; }
+
+a { color: inherit; }
+
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+.card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.row { display: flex; gap: 12px; flex-wrap: wrap; }
+
+input, select, button {
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.2);
+  color: #e8ecff;
+}
+
+button { cursor: pointer; background: rgba(255,255,255,0.12); }
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+
+.badge { display:inline-block; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,0.12); }
+
+.nav {
+  display:flex; gap: 10px; flex-wrap: wrap;
+  padding: 12px 0;
+}
+
+.nav a {
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+}
+
+.nav a.active { background: rgba(255,255,255,0.16); }
+
+.small { opacity: 0.85; font-size: 0.92rem; }
+.error { color: #ffb4b4; }
+.success { color: #b7ffb4; }
