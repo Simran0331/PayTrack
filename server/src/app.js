@@ -16,7 +16,7 @@ export function createApp() {
   app.use(helmet());
   app.use(
     cors({
-      origin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+      origin: process.env.CORS_ORIGIN || 'https://simran-pay-track-app.vercel.app',
       credentials: false
     })
   );
