@@ -71,14 +71,6 @@ const styles = `
   letter-spacing: .2px;
 }
 
-.pt-heroSub{
-  margin: 6px 2px 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-  max-width: 520px;
-}
-
 /* RIGHT */
 .pt-right{
   padding: 42px;
@@ -195,7 +187,7 @@ const styles = `
 }
 `;
 
-/* Inline illustration stays the same; colors match via current theme already */
+/* Inline illustration stays the same */
 function ExpenseTrackerIllustration() {
   return (
     <svg viewBox="0 0 920 520" width="100%" height="auto" role="img" aria-label="Personal expense tracker illustration">
@@ -288,9 +280,7 @@ export default function Login() {
             <div className="pt-heroCard">
               <ExpenseTrackerIllustration />
               <div className="pt-heroTitle">Track every expense, clearly.</div>
-              <div className="pt-heroSub">
-                Recent transactions, categories, and insights—designed for a clean personal expense tracker experience.
-              </div>
+              {/* Removed the subtitle line as requested */}
             </div>
           </div>
 
