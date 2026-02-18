@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../api/client';
 
-/* ===================== PayTrack • Bluish History Theme (NO mirror / NO glass) ===================== */
+
 const styles = `
 .pt-history{
   --bg0:#050b14;
@@ -17,7 +17,7 @@ const styles = `
 
   --stroke:rgba(255,255,255,.14);
 
-  /* ✅ solid panels (no glass blur) */
+  
   --panel: rgba(10,18,34,.92);
   --panel2: rgba(8,16,30,.90);
 
@@ -40,7 +40,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
-/* dotted overlay (kept) */
+
 .pt-history::before{
   content:"";
   position:absolute;
@@ -51,16 +51,16 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ removed mirror/aurora animated blob (pt-history::after + keyframes) */
+
 
 .pt-card{
   border-radius: var(--r);
   border: 1px solid var(--stroke);
 
-  /* ✅ solid card background */
+  
   background: var(--panel);
 
-  /* ✅ remove blur / glass */
+  
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -72,7 +72,7 @@ const styles = `
   z-index: 1;
 }
 
-/* ✅ removed shimmer highlight */
+
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
@@ -161,7 +161,7 @@ const styles = `
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.14);
 
-  /* ✅ solid badge */
+  
   background: rgba(255,255,255,.06);
 
   font-weight: 900;
