@@ -66,20 +66,6 @@ const styles = `
   box-shadow: 0 12px 30px rgba(0,0,0,.35);
 }
 
-.pt-heroTitle{
-  margin: 10px 2px 0;
-  font-size: 18px;
-  letter-spacing: .2px;
-}
-
-.pt-heroSub{
-  margin: 6px 2px 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.55;
-  max-width: 520px;
-}
-
 /* RIGHT */
 .pt-right{
   padding: 42px;
@@ -327,11 +313,6 @@ export default function Register() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // onSubmit:
-  // - prevents page reload
-  // - POSTs { name, email, password } to /auth/register
-  // - login(token, user) stores auth via AuthContext
-  // - redirects to /app/dashboard on success
   async function onSubmit(e) {
     e.preventDefault();
     setError('');
@@ -357,10 +338,7 @@ export default function Register() {
           <div className="pt-left">
             <div className="pt-heroCard">
               <ExpenseTrackerIllustration />
-              <div className="pt-heroTitle">Create your PayTrack account.</div>
-              <div className="pt-heroSub">
-                Start tracking personal expenses with clean insights, budgets, and a smooth dashboard experience.
-              </div>
+              {/* ✅ Removed left-side message (title + subtitle) */}
             </div>
           </div>
 
