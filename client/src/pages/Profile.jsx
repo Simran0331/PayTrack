@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
-/* ===================== PayTrack • Bluish Profile Theme (mirror removed / rest same) ===================== */
+
 const styles = `
 .pt-profile{
   --bg0:#050b14;
@@ -50,7 +50,7 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ MIRROR EFFECT REMOVED:
+
    - removed .pt-profile::after (floating glow)
    - removed @keyframes ptFloat
 */
@@ -70,7 +70,7 @@ const styles = `
   z-index:1;
 }
 
-/* ✅ remove shine sweep layer that looks like mirror */
+
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
