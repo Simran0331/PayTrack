@@ -4,7 +4,7 @@ import { clearPending, loadPending, makeIdempotencyKey, savePending } from '../a
 
 const PENDING_KEY = 'pf_pending_expense';
 
-/* ===================== PayTrack • Bluish Expense Page Theme (NO mirror / NO glass) ===================== */
+
 const styles = `
 .pt-expense{
   --bg0:#050b14;
