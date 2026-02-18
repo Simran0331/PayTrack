@@ -4,7 +4,7 @@ import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
 const styles = `
-/* ===================== PayTrack • Minimal Bluish Split Register ===================== */
+
 .pt-page{
   --bg0:#050b14;
   --bg1:#071428;
@@ -338,7 +338,7 @@ export default function Register() {
           <div className="pt-left">
             <div className="pt-heroCard">
               <ExpenseTrackerIllustration />
-              {/* ✅ Removed left-side message (title + subtitle) */}
+              {/*  Removed left-side message (title + subtitle) */}
             </div>
           </div>
 
