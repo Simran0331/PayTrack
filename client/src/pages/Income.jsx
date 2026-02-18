@@ -4,7 +4,7 @@ import { clearPending, loadPending, makeIdempotencyKey, savePending } from '../a
 
 const PENDING_KEY = 'pf_pending_income';
 
-/* ===================== PayTrack • Bluish Income Page Theme (same file) ===================== */
+/* ===================== PayTrack • Bluish Income Page Theme (NO mirror / rest same) ===================== */
 const styles = `
 .pt-income{
   --bg0:#050b14;
@@ -41,7 +41,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
-/* dotted overlay */
+/* dotted overlay (kept) */
 .pt-income::before{
   content:"";
   position:absolute;
@@ -52,27 +52,10 @@ const styles = `
   pointer-events:none;
 }
 
-/* floating glow */
-.pt-income::after{
-  content:"";
-  position:absolute;
-  width: 860px;
-  height: 860px;
-  right: -280px;
-  top: -320px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(56,189,248,.46), transparent 60%),
-    radial-gradient(circle at 65% 38%, rgba(96,165,250,.26), transparent 62%),
-    radial-gradient(circle at 48% 75%, rgba(165,243,252,.20), transparent 62%);
-  filter: blur(48px);
-  opacity:.38;
-  animation: ptFloat 10s cubic-bezier(.2,.9,.2,1) infinite;
-  pointer-events:none;
-}
-@keyframes ptFloat{
-  0%,100%{ transform: translate(0,0) scale(1); }
-  50%{ transform: translate(-22px, 22px) scale(1.03); }
-}
+/* ✅ mirror/glow removed:
+   - removed .pt-income::after
+   - removed @keyframes ptFloat
+*/
 
 .pt-row{
   display:flex;
@@ -82,36 +65,30 @@ const styles = `
   z-index:1;
 }
 
-/* cards */
+/* cards (keep same look, just remove mirror/glass shimmer) */
 .pt-card{
   border-radius: var(--r);
   border: 1px solid var(--stroke);
   background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+
+  /* ✅ remove glass blur */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
   box-shadow: var(--shadow2);
   padding:18px;
   position:relative;
   overflow:hidden;
   transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease);
 }
-.pt-card::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
-  transform: translateX(-30%) rotate(10deg);
-  opacity: 0;
-  transition: opacity 260ms var(--ease), transform 520ms var(--ease);
-}
+
+/* ✅ remove shimmer sweep */
+.pt-card::before{ content:none; }
+
 .pt-card:hover{
   transform: translateY(-3px);
   background: var(--glass2);
   box-shadow: 0 22px 70px rgba(0,0,0,.46);
-}
-.pt-card:hover::before{
-  opacity: 1;
-  transform: translateX(30%) rotate(10deg);
 }
 
 .pt-h3{ margin:0 0 12px 0; font-size:16px; letter-spacing:.2px; }
