@@ -19,7 +19,7 @@ function currentMonth() {
   return `${y}-${m}`; // YYYY-MM (required by <input type="month" />)
 }
 
-/* ===================== PayTrack • Bluish Monthly Theme (same file) ===================== */
+/* ===================== PayTrack • Bluish Monthly Theme (NO mirror / rest same) ===================== */
 const styles = `
 .pt-monthly{
   --bg0:#050b14;
@@ -56,7 +56,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
-/* dotted overlay */
+/* dotted overlay (kept) */
 .pt-monthly::before{
   content:"";
   position:absolute;
@@ -67,35 +67,21 @@ const styles = `
   pointer-events:none;
 }
 
-/* floating glow */
-.pt-monthly::after{
-  content:"";
-  position:absolute;
-  width: 860px;
-  height: 860px;
-  right: -280px;
-  top: -320px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(56,189,248,.46), transparent 60%),
-    radial-gradient(circle at 65% 38%, rgba(96,165,250,.26), transparent 62%),
-    radial-gradient(circle at 48% 75%, rgba(165,243,252,.20), transparent 62%);
-  filter: blur(48px);
-  opacity:.38;
-  animation: ptFloat 10s var(--ease) infinite;
-  pointer-events:none;
-}
-@keyframes ptFloat{
-  0%,100%{ transform: translate(0,0) scale(1); }
-  50%{ transform: translate(-22px, 22px) scale(1.03); }
-}
+/* ✅ mirror/glow removed:
+   - removed .pt-monthly::after
+   - removed @keyframes ptFloat
+*/
 
 /* card */
 .pt-card{
   border-radius: var(--r);
   border: 1px solid var(--stroke);
   background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+
+  /* ✅ remove glass blur */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
   box-shadow: var(--shadow2);
   padding:18px;
   position:relative;
@@ -104,22 +90,10 @@ const styles = `
   z-index:1;
 }
 
-/* IMPORTANT FIX:
-   The shiny ::before layer can sit on top and block clicks on inputs.
-   So we push it behind content + disable pointer events. */
-.pt-card::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
-  transform: translateX(-30%) rotate(10deg);
-  opacity: 0;
-  transition: opacity 260ms var(--ease), transform 520ms var(--ease);
-  z-index:0;
-  pointer-events:none;
-}
+/* ✅ remove shine sweep layer entirely */
+.pt-card::before{ content:none; }
 
-/* ensure all real content stays above the shine layer */
+/* ensure all real content stays above */
 .pt-card > *{
   position:relative;
   z-index:1;
@@ -129,10 +103,6 @@ const styles = `
   transform: translateY(-3px);
   background: var(--glass2);
   box-shadow: 0 22px 70px rgba(0,0,0,.46);
-}
-.pt-card:hover::before{
-  opacity: 1;
-  transform: translateX(30%) rotate(10deg);
 }
 
 .pt-row{
@@ -185,8 +155,11 @@ const styles = `
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.14);
   background: rgba(5,12,22,.82);
+
+  /* keep tooltip blur if you want; this is not the "mirror" effect */
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+
   box-shadow: 0 18px 46px rgba(0,0,0,.42);
   padding: 10px 12px;
   color: rgba(242,247,255,.92);
