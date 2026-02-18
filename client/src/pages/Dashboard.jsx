@@ -13,7 +13,7 @@ import {
   Cell
 } from 'recharts';
 
-/* ===================== PayTrack • Bluish Dashboard Theme (NO mirror / NO glass) ===================== */
+
 const styles = `
 .pt-dashboard{
   --bg0:#050b14;
@@ -29,7 +29,7 @@ const styles = `
 
   --stroke:rgba(255,255,255,.14);
 
-  /* ✅ solid (non-glass) panels */
+
   --panel: rgba(10,18,34,.92);
   --panel2: rgba(8,16,30,.90);
 
@@ -63,7 +63,7 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ removed mirror/aurora animated blob (pt-dashboard::after + keyframes) */
+
 
 .pt-row{
   display:flex;
@@ -77,10 +77,10 @@ const styles = `
   border-radius: var(--r);
   border: 1px solid var(--stroke);
 
-  /* ✅ solid panel background */
+  
   background: var(--panel);
 
-  /* ✅ remove glass blur */
+  
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -89,11 +89,11 @@ const styles = `
   position:relative;
   overflow:hidden;
 
-  /* ✅ keep subtle hover but no shimmer */
+  
   transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
-/* ✅ removed shimmer/mirror highlight */
+
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
@@ -132,7 +132,7 @@ const styles = `
   border-radius:16px;
   border:1px solid rgba(255,255,255,.12);
 
-  /* ✅ solid inner panels */
+  
   background: var(--panel2);
 
   padding:12px;
@@ -292,7 +292,7 @@ export default function Dashboard() {
       setError('');
       setLoading(true);
 
-      // ✅ retry a few times so dashboard loads immediately after login
+     
       for (let attempt = 0; attempt < 4; attempt++) {
         try {
           const [o, h] = await Promise.all([
@@ -309,7 +309,7 @@ export default function Dashboard() {
           if (!alive) return;
 
           if (isAuthNotReady(e) && attempt < 3) {
-            // wait briefly for token to be stored/attached, then retry (no error flash)
+           
             await sleep(150);
             continue;
           }
