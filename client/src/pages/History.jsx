@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from '../api/client';
 
-/* ===================== PayTrack • Bluish History Theme (same file) ===================== */
+/* ===================== PayTrack • Bluish History Theme (NO mirror / NO glass) ===================== */
 const styles = `
 .pt-history{
   --bg0:#050b14;
@@ -16,8 +16,10 @@ const styles = `
   --b3:#a5f3fc;  /* cyan */
 
   --stroke:rgba(255,255,255,.14);
-  --glass:rgba(255,255,255,.08);
-  --glass2:rgba(255,255,255,.12);
+
+  /* ✅ solid panels (no glass blur) */
+  --panel: rgba(10,18,34,.92);
+  --panel2: rgba(8,16,30,.90);
 
   --shadow:0 26px 80px rgba(0,0,0,.52);
   --shadow2:0 14px 46px rgba(0,0,0,.38);
@@ -38,7 +40,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
-/* dotted overlay */
+/* dotted overlay (kept) */
 .pt-history::before{
   content:"";
   position:absolute;
@@ -49,58 +51,33 @@ const styles = `
   pointer-events:none;
 }
 
-/* floating glow */
-.pt-history::after{
-  content:"";
-  position:absolute;
-  width: 860px;
-  height: 860px;
-  right: -280px;
-  top: -320px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(56,189,248,.46), transparent 60%),
-    radial-gradient(circle at 65% 38%, rgba(96,165,250,.26), transparent 62%),
-    radial-gradient(circle at 48% 75%, rgba(165,243,252,.20), transparent 62%);
-  filter: blur(48px);
-  opacity:.38;
-  animation: ptFloat 10s var(--ease) infinite;
-  pointer-events:none;
-}
-@keyframes ptFloat{
-  0%,100%{ transform: translate(0,0) scale(1); }
-  50%{ transform: translate(-22px, 22px) scale(1.03); }
-}
+/* ✅ removed mirror/aurora animated blob (pt-history::after + keyframes) */
 
 .pt-card{
   border-radius: var(--r);
   border: 1px solid var(--stroke);
-  background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+
+  /* ✅ solid card background */
+  background: var(--panel);
+
+  /* ✅ remove blur / glass */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
   box-shadow: var(--shadow2);
   padding:18px;
   position:relative;
   overflow:hidden;
-  transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease);
+  transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
   z-index: 1;
 }
-.pt-card::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
-  transform: translateX(-30%) rotate(10deg);
-  opacity: 0;
-  transition: opacity 260ms var(--ease), transform 520ms var(--ease);
-}
+
+/* ✅ removed shimmer highlight */
+.pt-card::before{ content:none; }
+
 .pt-card:hover{
-  transform: translateY(-3px);
-  background: var(--glass2);
+  transform: translateY(-2px);
   box-shadow: 0 22px 70px rgba(0,0,0,.46);
-}
-.pt-card:hover::before{
-  opacity: 1;
-  transform: translateX(30%) rotate(10deg);
 }
 
 .pt-row{
@@ -133,28 +110,13 @@ const styles = `
   letter-spacing: .2px;
   cursor:pointer;
   box-shadow: 0 14px 30px rgba(0,0,0,.34);
-  position:relative;
-  overflow:hidden;
-  transform: translateY(0);
   transition: transform 180ms var(--ease), box-shadow 180ms var(--ease), filter 180ms var(--ease);
-}
-.pt-btn::after{
-  content:"";
-  position:absolute;
-  top:-30%;
-  left:-60%;
-  width: 60%;
-  height: 160%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.35) 45%, transparent 90%);
-  transform: rotate(18deg);
-  transition: left 420ms var(--ease);
 }
 .pt-btn:hover{
   transform: translateY(-2px);
   box-shadow: 0 18px 44px rgba(0,0,0,.44);
   filter: saturate(1.08);
 }
-.pt-btn:hover::after{ left: 120%; }
 .pt-btn:active{ transform: translateY(0) scale(.99); }
 
 .pt-error{
@@ -174,7 +136,7 @@ const styles = `
   border-radius:16px;
   overflow:hidden;
   border:1px solid rgba(255,255,255,.12);
-  background: rgba(255,255,255,.04);
+  background: rgba(255,255,255,.03);
 }
 .pt-table th, .pt-table td{
   text-align:left;
@@ -198,7 +160,10 @@ const styles = `
   padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.08);
+
+  /* ✅ solid badge */
+  background: rgba(255,255,255,.06);
+
   font-weight: 900;
   font-size: 12px;
   letter-spacing: .15px;
