@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
     setAuthToken(token);
   }, [token]);
 
-  useEffect(() => 
+  useEffect(() => {
     // Validate token on startup
     async function init() {
       try {
