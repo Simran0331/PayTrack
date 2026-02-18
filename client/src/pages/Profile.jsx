@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
-/* ===================== PayTrack • Bluish Profile Theme (same file) ===================== */
+/* ===================== PayTrack • Bluish Profile Theme (NO mirror / rest same) ===================== */
 const styles = `
 .pt-profile{
   --bg0:#050b14;
@@ -39,6 +39,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
+/* dotted overlay (kept) */
 .pt-profile::before{
   content:"";
   position:absolute;
@@ -49,26 +50,10 @@ const styles = `
   pointer-events:none;
 }
 
-.pt-profile::after{
-  content:"";
-  position:absolute;
-  width: 860px;
-  height: 860px;
-  right: -280px;
-  top: -320px;
-  background:
-    radial-gradient(circle at 30% 30%, rgba(56,189,248,.46), transparent 60%),
-    radial-gradient(circle at 65% 38%, rgba(96,165,250,.26), transparent 62%),
-    radial-gradient(circle at 48% 75%, rgba(165,243,252,.20), transparent 62%);
-  filter: blur(48px);
-  opacity:.38;
-  animation: ptFloat 10s var(--ease) infinite;
-  pointer-events:none;
-}
-@keyframes ptFloat{
-  0%,100%{ transform: translate(0,0) scale(1); }
-  50%{ transform: translate(-22px, 22px) scale(1.03); }
-}
+/* ✅ mirror/glow removed:
+   - removed .pt-profile::after
+   - removed @keyframes ptFloat
+*/
 
 .pt-card{
   width: 100%;
@@ -77,8 +62,11 @@ const styles = `
   border-radius: var(--r);
   border: 1px solid var(--stroke);
   background: var(--glass);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+
+  /* ✅ remove glass blur */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
   box-shadow: var(--shadow2);
   padding:18px;
   position:relative;
@@ -86,23 +74,14 @@ const styles = `
   transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease);
   z-index:1;
 }
-.pt-card::before{
-  content:"";
-  position:absolute;
-  inset:-40%;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,.22) 35%, transparent 70%);
-  transform: translateX(-30%) rotate(10deg);
-  opacity: 0;
-  transition: opacity 260ms var(--ease), transform 520ms var(--ease);
-}
+
+/* ✅ remove shine sweep layer */
+.pt-card::before{ content:none; }
+
 .pt-card:hover{
   transform: translateY(-3px);
   background: var(--glass2);
   box-shadow: 0 22px 70px rgba(0,0,0,.46);
-}
-.pt-card:hover::before{
-  opacity: 1;
-  transform: translateX(30%) rotate(10deg);
 }
 
 .pt-h3{
