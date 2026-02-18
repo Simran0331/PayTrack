@@ -4,6 +4,7 @@ import { clearPending, loadPending, makeIdempotencyKey, savePending } from '../a
 
 const PENDING_KEY = 'pf_pending_income';
 
+/* ===================== PayTrack • Bluish Income Page Theme (NO mirror / rest same) ===================== */
 const styles = `
 .pt-income{
   --bg0:#050b14;
@@ -51,7 +52,10 @@ const styles = `
   pointer-events:none;
 }
 
-/* (mirror/glow already removed) */
+/* ✅ mirror/glow removed:
+   - removed .pt-income::after
+   - removed @keyframes ptFloat
+*/
 
 .pt-row{
   display:flex;
@@ -61,22 +65,13 @@ const styles = `
   z-index:1;
 }
 
-/*  NEW: force the top two cards to stay side-by-side */
-.pt-incomeGrid{
-  display:grid;
-  grid-template-columns: 1fr 1.6fr; /* Add income | Income list */
-  gap:16px;
-  align-items:start;
-}
-@media (max-width: 980px){
-  .pt-incomeGrid{ grid-template-columns: 1fr; }
-}
-
 /* cards (keep same look, just remove mirror/glass shimmer) */
 .pt-card{
   border-radius: var(--r);
   border: 1px solid var(--stroke);
   background: var(--glass);
+
+  /* ✅ remove glass blur */
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -87,7 +82,7 @@ const styles = `
   transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease);
 }
 
-/* removed shimmer/mirror highlight */
+/* ✅ remove shimmer sweep */
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
@@ -335,10 +330,9 @@ export default function Income() {
       <style>{styles}</style>
 
       <div className="pt-income">
-        {/*  SIDE-BY-SIDE LAYOUT WRAPPER */}
-        <div className="pt-incomeGrid">
+        <div className="pt-row">
           {/* Add income */}
-          <div className="pt-card">
+          <div className="pt-card" style={{ flex: '1 1 340px' }}>
             <h3 className="pt-h3">Add income</h3>
 
             <form onSubmit={submit} className="pt-form">
@@ -392,7 +386,7 @@ export default function Income() {
           </div>
 
           {/* List */}
-          <div className="pt-card">
+          <div className="pt-card" style={{ flex: '1 1 560px' }}>
             <div className="pt-row" style={{ justifyContent: 'space-between', alignItems: 'center', gap: 10 }}>
               <h3 className="pt-h3" style={{ margin: 0 }}>Income</h3>
 
@@ -458,6 +452,7 @@ export default function Income() {
               )}
             </div>
           </div>
+
         </div>
       </div>
     </>
