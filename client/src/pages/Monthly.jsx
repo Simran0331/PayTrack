@@ -19,7 +19,7 @@ function currentMonth() {
   return `${y}-${m}`; // YYYY-MM (required by <input type="month" />)
 }
 
-/* ===================== PayTrack • Bluish Monthly Theme (NO mirror / rest same) ===================== */
+
 const styles = `
 .pt-monthly{
   --bg0:#050b14;
@@ -56,7 +56,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
-/* dotted overlay (kept) */
+
 .pt-monthly::before{
   content:"";
   position:absolute;
@@ -67,7 +67,7 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ mirror/glow removed:
+
    - removed .pt-monthly::after
    - removed @keyframes ptFloat
 */
@@ -78,7 +78,7 @@ const styles = `
   border: 1px solid var(--stroke);
   background: var(--glass);
 
-  /* ✅ remove glass blur */
+  
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -90,7 +90,7 @@ const styles = `
   z-index:1;
 }
 
-/* ✅ remove shine sweep layer entirely */
+
 .pt-card::before{ content:none; }
 
 /* ensure all real content stays above */
