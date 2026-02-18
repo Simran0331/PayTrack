@@ -4,7 +4,7 @@ import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
 const styles = `
-/* ===================== PayTrack • Minimal Bluish Split Login ===================== */
+
 .pt-page{
   --bg0:#050b14;
   --bg1:#071428;
