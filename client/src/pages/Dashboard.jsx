@@ -278,23 +278,53 @@ export default function Dashboard() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    let alive = true;
+
+    const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+    const isAuthNotReady = (e) => {
+      const msg = String(e?.response?.data?.error || e?.message || '').toLowerCase();
+      const status = e?.response?.status;
+      // treat "missing authorization token" / 401 as "token not ready yet"
+      return status === 401 || msg.includes('missing authorization token') || msg.includes('authorization token');
+    };
+
     async function load() {
       setError('');
       setLoading(true);
-      try {
-        const [o, h] = await Promise.all([
-          api.get('/summary/overview'),
-          api.get('/history', { params: { limit: 10 } })
-        ]);
-        setOverview(o.data);
-        setHistory(h.data.items || []);
-      } catch (e) {
-        setError(e?.response?.data?.error || 'Failed to load dashboard');
-      } finally {
-        setLoading(false);
+
+      // ✅ retry a few times so dashboard loads immediately after login
+      for (let attempt = 0; attempt < 4; attempt++) {
+        try {
+          const [o, h] = await Promise.all([
+            api.get('/summary/overview'),
+            api.get('/history', { params: { limit: 10 } })
+          ]);
+
+          if (!alive) return;
+          setOverview(o.data);
+          setHistory(h.data.items || []);
+          setLoading(false);
+          return;
+        } catch (e) {
+          if (!alive) return;
+
+          if (isAuthNotReady(e) && attempt < 3) {
+            // wait briefly for token to be stored/attached, then retry (no error flash)
+            await sleep(150);
+            continue;
+          }
+
+          setError(e?.response?.data?.error || 'Failed to load dashboard');
+          setLoading(false);
+          return;
+        }
       }
     }
+
     load();
+    return () => {
+      alive = false;
+    };
   }, []);
 
   if (loading) {
