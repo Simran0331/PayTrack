@@ -20,7 +20,7 @@ const styles = `
 
   --stroke:rgba(255,255,255,.14);
 
-  /* ✅ solid panels (no glass blur) */
+ 
   --panel: rgba(10,18,34,.92);
   --panel2: rgba(8,16,30,.90);
 
@@ -54,7 +54,7 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ removed mirror/aurora animated blob (pt-expense::after + keyframes) */
+
 
 .pt-row{
   display:flex;
@@ -69,10 +69,10 @@ const styles = `
   border-radius: var(--r);
   border: 1px solid var(--stroke);
 
-  /* ✅ solid card background */
+  
   background: var(--panel);
 
-  /* ✅ remove blur / glass */
+ 
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -81,11 +81,11 @@ const styles = `
   position:relative;
   overflow:hidden;
 
-  /* ✅ keep subtle lift */
+ 
   transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
 }
 
-/* ✅ removed shimmer highlight */
+
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
@@ -114,7 +114,7 @@ const styles = `
   border-radius: 14px;
   border: 1px solid rgba(255,255,255,.16);
 
-  /* ✅ solid input background */
+ 
   background: rgba(3,10,18,.70);
 
   color: var(--ink);
@@ -166,7 +166,7 @@ const styles = `
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.14);
 
-  /* ✅ solid badge */
+  
   background: rgba(255,255,255,.06);
 
   font-weight: 900;
