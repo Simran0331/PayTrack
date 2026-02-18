@@ -4,7 +4,7 @@ import { api } from '../api/client';
 import { useAuth } from '../context/AuthContext';
 
 const styles = `
-/* ===================== PayTrack • Minimal Bluish Split Register ===================== */
+/* ===================== PayTrack • Minimal Bluish Split Login ===================== */
 .pt-page{
   --bg0:#050b14;
   --bg1:#071428;
@@ -28,7 +28,6 @@ const styles = `
   place-items:center;
   padding:28px;
   color:var(--ink);
-
   background:
     radial-gradient(900px 600px at 15% 15%, rgba(56,189,248,.18), transparent 60%),
     radial-gradient(900px 600px at 85% 20%, rgba(96,165,250,.14), transparent 60%),
@@ -77,7 +76,7 @@ const styles = `
 
 .pt-formWrap{
   width:100%;
-  max-width: 440px;
+  max-width: 430px;
   border-radius: var(--r);
   border: 1px solid rgba(255,255,255,.12);
   background: var(--panel);
@@ -92,7 +91,7 @@ const styles = `
 
 .pt-brandName{
   margin: 0;
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 900;
   letter-spacing: .3px;
   color: var(--ink);
@@ -111,7 +110,6 @@ const styles = `
 }
 
 .pt-field{ display:grid; gap: 7px; }
-
 .pt-label{
   font-size: 12px;
   color: rgba(242,247,255,.70);
@@ -170,13 +168,6 @@ const styles = `
 }
 .pt-link:hover{ color: #fff; }
 
-.pt-hint{
-  margin-top: 10px;
-  text-align:center;
-  font-size: 12px;
-  color: rgba(242,247,255,.55);
-}
-
 /* Responsive */
 @media (max-width: 900px){
   .pt-shell{ grid-template-columns: 1fr; min-height: auto; }
@@ -189,125 +180,69 @@ const styles = `
 }
 `;
 
-/* Left illustration stays the same */
+/* Inline illustration stays the same */
 function ExpenseTrackerIllustration() {
   return (
-    <svg viewBox="0 0 920 520" width="100%" height="auto" role="img" aria-label="PayTrack expense tracker mockup">
+    <svg viewBox="0 0 920 520" width="100%" height="auto" role="img" aria-label="Personal expense tracker illustration">
       <defs>
-        <linearGradient id="bgGlass" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="rgba(255,255,255,0.14)" />
+        <linearGradient id="ptGrad" x1="0" x2="1" y1="0" y2="1">
+          <stop offset="0" stopColor="rgba(56,189,248,0.95)" />
+          <stop offset="1" stopColor="rgba(96,165,250,0.75)" />
+        </linearGradient>
+        <linearGradient id="ptGlass" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0" stopColor="rgba(255,255,255,0.18)" />
           <stop offset="1" stopColor="rgba(255,255,255,0.06)" />
         </linearGradient>
-        <linearGradient id="accentBlue" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="rgba(56,189,248,0.95)" />
-          <stop offset="1" stopColor="rgba(96,165,250,0.80)" />
-        </linearGradient>
-        <linearGradient id="accentCyan" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="rgba(165,243,252,0.92)" />
-          <stop offset="1" stopColor="rgba(56,189,248,0.55)" />
-        </linearGradient>
-        <filter id="softShadow" x="-25%" y="-25%" width="150%" height="150%">
-          <feDropShadow dx="0" dy="16" stdDeviation="16" floodColor="rgba(0,0,0,0.45)" />
+        <filter id="ptShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="18" stdDeviation="18" floodColor="rgba(0,0,0,0.45)" />
         </filter>
       </defs>
 
-      <rect x="28" y="28" width="864" height="464" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" filter="url(#softShadow)" />
+      <rect x="32" y="30" rx="26" ry="26" width="856" height="460" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.14)" filter="url(#ptShadow)" />
 
-      <g transform="translate(70 70)">
-        <rect x="0" y="0" width="520" height="64" rx="18" fill="url(#bgGlass)" stroke="rgba(255,255,255,0.12)" />
-        <circle cx="36" cy="32" r="12" fill="rgba(255,255,255,0.20)" />
-        <rect x="62" y="22" width="160" height="20" rx="10" fill="rgba(255,255,255,0.12)" />
-        <rect x="380" y="18" width="120" height="28" rx="14" fill="url(#accentBlue)" opacity="0.92" />
-        <text x="440" y="37" textAnchor="middle" fontSize="14" fill="#02101e" fontWeight="900">PayTrack</text>
+      <rect x="70" y="70" rx="14" ry="14" width="520" height="62" fill="url(#ptGlass)" stroke="rgba(255,255,255,0.12)" />
+      <circle cx="102" cy="101" r="10" fill="rgba(255,255,255,0.22)" />
+      <circle cx="132" cy="101" r="10" fill="rgba(255,255,255,0.18)" />
+      <circle cx="162" cy="101" r="10" fill="rgba(255,255,255,0.14)" />
+      <rect x="210" y="90" rx="10" ry="10" width="330" height="22" fill="rgba(255,255,255,0.12)" />
+
+      <rect x="70" y="154" rx="18" ry="18" width="360" height="300" fill="rgba(3,10,18,0.40)" stroke="rgba(255,255,255,0.10)" />
+      {Array.from({ length: 5 }).map((_, i) => {
+        const y = 182 + i * 52;
+        const accent = i % 2 === 0 ? "rgba(56,189,248,0.95)" : "rgba(165,243,252,0.85)";
+        return (
+          <g key={i}>
+            <rect x="92" y={y} rx="14" ry="14" width="316" height="42" fill="rgba(255,255,255,0.06)" />
+            <circle cx="116" cy={y + 21} r="10" fill={accent} />
+            <rect x="138" y={y + 12} rx="8" ry="8" width="150" height="16" fill="rgba(255,255,255,0.12)" />
+            <rect x="304" y={y + 12} rx="8" ry="8" width="88" height="16" fill="rgba(255,255,255,0.10)" />
+          </g>
+        );
+      })}
+
+      <rect x="452" y="154" rx="18" ry="18" width="436" height="300" fill="rgba(3,10,18,0.40)" stroke="rgba(255,255,255,0.10)" />
+
+      <g transform="translate(630 305)">
+        <circle r="84" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="26" />
+        <circle r="84" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="26" strokeDasharray="260 260" strokeDashoffset="30" strokeLinecap="round" transform="rotate(-90)" />
+        <circle r="84" fill="none" stroke="rgba(165,243,252,0.85)" strokeWidth="26" strokeDasharray="170 260" strokeDashoffset="-210" strokeLinecap="round" transform="rotate(-90)" />
+        <circle r="84" fill="none" stroke="rgba(96,165,250,0.75)" strokeWidth="26" strokeDasharray="95 260" strokeDashoffset="-380" strokeLinecap="round" transform="rotate(-90)" />
+        <circle r="54" fill="rgba(0,0,0,0.12)" />
+        <text x="0" y="6" textAnchor="middle" fontSize="18" fill="rgba(242,247,255,0.9)" fontWeight="700">Insights</text>
       </g>
 
-      {/* Phone */}
-      <g transform="translate(94 132)">
-        <rect x="0" y="0" width="360" height="342" rx="34" fill="rgba(3,10,18,0.55)" stroke="rgba(255,255,255,0.14)" />
-        <rect x="120" y="12" width="120" height="20" rx="10" fill="rgba(255,255,255,0.10)" />
-
-        {/* Balance */}
-        <g transform="translate(24 44)">
-          <rect x="0" y="0" width="312" height="92" rx="22" fill="url(#accentBlue)" opacity="0.95" />
-          <text x="18" y="34" fontSize="12" fill="rgba(2,16,30,0.75)" fontWeight="800">Total Balance</text>
-          <text x="18" y="74" fontSize="20" fill="#02101e" fontWeight="900">₹ 12,480</text>
-          <rect x="210" y="20" width="86" height="26" rx="13" fill="rgba(255,255,255,0.22)" />
-          <text x="253" y="38" textAnchor="middle" fontSize="12" fill="#02101e" fontWeight="900">This week</text>
-        </g>
-
-        {/* Categories */}
-        <g transform="translate(24 150)">
-          <rect x="0" y="0" width="312" height="92" rx="18" fill="rgba(255,255,255,0.06)" />
-          <text x="16" y="26" fontSize="12" fill="rgba(242,247,255,0.80)" fontWeight="800">Spending</text>
-
-          {[
-            { x: 18, w: 120, c: "rgba(56,189,248,0.95)" },
-            { x: 18, w: 170, c: "rgba(165,243,252,0.80)" },
-            { x: 18, w: 90,  c: "rgba(96,165,250,0.80)" },
-          ].map((bar, i) => (
-            <g key={i}>
-              <rect x={bar.x} y={38 + i * 18} width="220" height="10" rx="5" fill="rgba(255,255,255,0.08)" />
-              <rect x={bar.x} y={38 + i * 18} width={bar.w} height="10" rx="5" fill={bar.c} />
-            </g>
-          ))}
-
-          <rect x="246" y="36" width="50" height="12" rx="6" fill="rgba(255,255,255,0.10)" />
-          <rect x="246" y="54" width="60" height="12" rx="6" fill="rgba(255,255,255,0.10)" />
-          <rect x="246" y="72" width="46" height="12" rx="6" fill="rgba(255,255,255,0.10)" />
-        </g>
-
-        {/* Transactions */}
-        <g transform="translate(24 252)">
-          <rect x="0" y="0" width="312" height="70" rx="18" fill="rgba(255,255,255,0.06)" />
-          <text x="16" y="26" fontSize="12" fill="rgba(242,247,255,0.80)" fontWeight="800">Recent</text>
-          {[
-            { y: 34, c: "rgba(56,189,248,0.95)" },
-            { y: 52, c: "rgba(165,243,252,0.85)" },
-          ].map((t, i) => (
-            <g key={i}>
-              <circle cx="22" cy={t.y} r="7" fill={t.c} />
-              <rect x="36" y={t.y - 6} width="150" height="12" rx="6" fill="rgba(255,255,255,0.12)" />
-              <rect x="230" y={t.y - 6} width="64" height="12" rx="6" fill="rgba(255,255,255,0.10)" />
-            </g>
-          ))}
-        </g>
-      </g>
-
-      {/* Insights card */}
-      <g transform="translate(486 150)">
-        <rect x="0" y="0" width="374" height="324" rx="24" fill="rgba(3,10,18,0.40)" stroke="rgba(255,255,255,0.10)" />
-        <rect x="22" y="22" width="160" height="12" rx="6" fill="rgba(255,255,255,0.12)" />
-        <rect x="22" y="44" width="210" height="10" rx="5" fill="rgba(255,255,255,0.10)" />
-
-        <g transform="translate(22 78)">
-          {[
-            { y: 0,  w: 210, c: "rgba(56,189,248,0.92)" },
-            { y: 34, w: 240, c: "rgba(165,243,252,0.78)" },
-            { y: 68, w: 190, c: "rgba(96,165,250,0.78)" },
-          ].map((row, i) => (
-            <g key={i}>
-              <rect x="0" y={row.y} width="260" height="18" rx="9" fill="rgba(255,255,255,0.08)" />
-              <rect x="0" y={row.y} width={row.w} height="18" rx="9" fill={row.c} />
-            </g>
-          ))}
-        </g>
-
-        <g transform="translate(22 268)">
-          <rect x="0" y="0" width="210" height="38" rx="16" fill="url(#accentCyan)" opacity="0.92" />
-          <text x="105" y="24" textAnchor="middle" fontSize="14" fill="#031018" fontWeight="900">
-            Track • Budget • Save
-          </text>
-        </g>
+      <g transform="translate(760 92)">
+        <rect x="-96" y="-30" rx="18" ry="18" width="192" height="60" fill="url(#ptGrad)" opacity="0.95" />
+        <text x="0" y="8" textAnchor="middle" fontSize="16" fill="#031018" fontWeight="900">Expense Tracker</text>
       </g>
     </svg>
   );
 }
 
-export default function Register() {
+export default function Login() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -318,11 +253,11 @@ export default function Register() {
     setError('');
     setLoading(true);
     try {
-      const res = await api.post('/auth/register', { name, email, password });
+      const res = await api.post('/auth/login', { email, password });
       login(res.data.token, res.data.user);
       navigate('/app/dashboard');
     } catch (err) {
-      setError(err?.response?.data?.error || 'Registration failed');
+      setError(err?.response?.data?.error || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -334,15 +269,13 @@ export default function Register() {
 
       <div className="pt-page">
         <div className="pt-shell">
-          {/* LEFT */}
           <div className="pt-left">
             <div className="pt-heroCard">
               <ExpenseTrackerIllustration />
-              {/* Removed BOTH lines from the left side as requested */}
+              {/* Removed the left-side title/subtitle as requested */}
             </div>
           </div>
 
-          {/* RIGHT */}
           <div className="pt-right">
             <div className="pt-formWrap">
               <div className="pt-brandTop">
@@ -351,18 +284,6 @@ export default function Register() {
               </div>
 
               <form onSubmit={onSubmit} className="pt-form">
-                <label className="pt-field">
-                  <span className="pt-label">Name</span>
-                  <input
-                    className="pt-input"
-                    placeholder="Your name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                    autoComplete="name"
-                  />
-                </label>
-
                 <label className="pt-field">
                   <span className="pt-label">Email</span>
                   <input
@@ -381,12 +302,11 @@ export default function Register() {
                   <input
                     className="pt-input"
                     type="password"
-                    placeholder="Minimum 6 characters"
+                    placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    minLength={6}
                     required
-                    autoComplete="new-password"
+                    autoComplete="current-password"
                   />
                 </label>
 
@@ -394,13 +314,9 @@ export default function Register() {
 
                 <div className="pt-actions">
                   <button className="pt-btn" type="submit" disabled={loading}>
-                    {loading ? 'Creating…' : 'Create account'}
+                    {loading ? 'Signing in…' : 'Login'}
                   </button>
-                  <Link className="pt-link" to="/login">Back to login</Link>
-                </div>
-
-                <div className="pt-hint">
-                  Tip: Use a password you don’t reuse anywhere else.
+                  <Link className="pt-link" to="/register">Create account</Link>
                 </div>
               </form>
             </div>
