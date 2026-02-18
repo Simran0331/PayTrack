@@ -65,12 +65,6 @@ const styles = `
   box-shadow: 0 12px 30px rgba(0,0,0,.35);
 }
 
-.pt-heroTitle{
-  margin: 10px 2px 0;
-  font-size: 18px;
-  letter-spacing: .2px;
-}
-
 /* RIGHT */
 .pt-right{
   padding: 42px;
@@ -279,8 +273,7 @@ export default function Login() {
           <div className="pt-left">
             <div className="pt-heroCard">
               <ExpenseTrackerIllustration />
-              <div className="pt-heroTitle">Track every expense, clearly.</div>
-              {/* Removed the subtitle line as requested */}
+              {/* Removed BOTH lines from the left side as requested */}
             </div>
           </div>
 
