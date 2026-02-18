@@ -4,8 +4,6 @@ This is a production-leaning **MERN** project (MongoDB + Express + React + Node)
 
 The backend is designed to behave correctly under **retries / refreshes / unreliable networks** by supporting **idempotent creates** via an `Idempotency-Key` header.
 
-> Assignment reference: the required endpoints and behavior come from the provided PDF. fileciteturn0file0
-
 ---
 
 ## Tech choices (and why)
