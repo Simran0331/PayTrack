@@ -4,7 +4,7 @@ import { clearPending, loadPending, makeIdempotencyKey, savePending } from '../a
 
 const PENDING_KEY = 'pf_pending_income';
 
-/* ===================== PayTrack • Bluish Income Page Theme (NO mirror / rest same) ===================== */
+
 const styles = `
 .pt-income{
   --bg0:#050b14;
@@ -52,7 +52,7 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ mirror/glow removed:
+
    - removed .pt-income::after
    - removed @keyframes ptFloat
 */
@@ -71,7 +71,7 @@ const styles = `
   border: 1px solid var(--stroke);
   background: var(--glass);
 
-  /* ✅ remove glass blur */
+  
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 
@@ -82,7 +82,7 @@ const styles = `
   transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease);
 }
 
-/* ✅ remove shimmer sweep */
+
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
