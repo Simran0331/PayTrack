@@ -18,8 +18,9 @@ const styles = `
   --b3:#a5f3fc;  /* cyan tint */
   --stroke:rgba(255,255,255,.16);
 
-  --glass:rgba(255,255,255,.09);
-  --glass2:rgba(255,255,255,.13);
+  /* Updated: use normal CSS surfaces instead of glass blur */
+  --surface: rgba(10, 18, 34, .92);
+  --surface2: rgba(7, 14, 28, .88);
 
   --shadow:0 30px 90px rgba(0,0,0,.52);
   --shadow2:0 16px 50px rgba(0,0,0,.40);
@@ -82,9 +83,10 @@ const styles = `
   min-height: 660px;
   border-radius: var(--r);
   border: 1px solid var(--stroke);
-  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+
+  /* Updated: remove glass blur; keep similar look with normal surface */
+  background: linear-gradient(180deg, rgba(10,18,34,.94), rgba(7,14,28,.90));
+
   box-shadow: var(--shadow);
   overflow:hidden;
   position:relative;
@@ -130,7 +132,10 @@ const styles = `
 .pt-heroCard{
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.14);
-  background: rgba(255,255,255,.06);
+
+  /* Updated: normal surface instead of glass */
+  background: rgba(10,18,34,.88);
+
   box-shadow: var(--shadow2);
   padding: 18px;
   overflow:hidden;
@@ -151,7 +156,7 @@ const styles = `
 
 .pt-shell:hover .pt-heroCard{
   transform: translateY(-3px);
-  background: rgba(255,255,255,.075);
+  background: rgba(10,18,34,.92);
 }
 
 .pt-shell:hover .pt-heroCard::before{
@@ -190,9 +195,10 @@ const styles = `
   max-width: 430px;
   border-radius: 22px;
   border: 1px solid rgba(255,255,255,.16);
-  background: rgba(255,255,255,.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+
+  /* Updated: remove glass blur; normal CSS panel */
+  background: rgba(10,18,34,.92);
+
   box-shadow: var(--shadow2);
   padding: 22px;
   position:relative;
@@ -408,7 +414,7 @@ function ExpenseTrackerIllustration() {
         <circle r="84" fill="none" stroke="rgba(255,255,255,0.10)" strokeWidth="26" />
         <circle r="84" fill="none" stroke="rgba(56,189,248,0.95)" strokeWidth="26" strokeDasharray="260 260" strokeDashoffset="30" strokeLinecap="round" transform="rotate(-90)" />
         <circle r="84" fill="none" stroke="rgba(165,243,252,0.85)" strokeWidth="26" strokeDasharray="170 260" strokeDashoffset="-210" strokeLinecap="round" transform="rotate(-90)" />
-        <circle r="84" fill="none" stroke="rgba(96,165,250,0.75)" strokeWidth="26" strokeDasharray="95 260" strokeDashoffset="-380" strokeLinecap="round" transform="rotate(-90)" />
+        <circle r="84" fill="none" stroke="rgba(96,165,250,0.75)" strokeWidth="26" strokeDasharray="95 260" strokeDashoffset="-380" strokeLinecap="round" transform="rotate(-90)" strokeLinecap="round" />
         <circle r="54" fill="rgba(0,0,0,0.12)" />
         <text x="0" y="6" textAnchor="middle" fontSize="18" fill="rgba(242,247,255,0.9)" fontWeight="700">Insights</text>
       </g>
