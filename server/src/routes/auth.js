@@ -13,7 +13,7 @@ function signToken(userId) {
 }
 
 const registerSchema = z.object({
-  name: z.string().min(1).max(80),
+  name: z.string().min(1).max(),
   email: z.string().email().max(120),
   password: z.string().min(6).max(200)
 });
