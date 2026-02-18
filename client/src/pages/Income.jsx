@@ -4,7 +4,7 @@ import { clearPending, loadPending, makeIdempotencyKey, savePending } from '../a
 
 const PENDING_KEY = 'pf_pending_income';
 
-/* ===================== PayTrack • Bluish Income Page Theme (NO mirror / rest same) ===================== */
+
 const styles = `
 .pt-income{
   --bg0:#050b14;
@@ -34,6 +34,7 @@ const styles = `
   position:relative;
   overflow:hidden;
 
+  
   background:
     radial-gradient(1100px 760px at 12% 12%, rgba(56,189,248,.18), transparent 60%),
     radial-gradient(900px 650px at 86% 20%, rgba(96,165,250,.14), transparent 55%),
@@ -41,7 +42,7 @@ const styles = `
     linear-gradient(140deg, var(--bg0) 0%, var(--bg1) 55%, #040812 100%);
 }
 
-/* dotted overlay (kept) */
+/* dotted overlay (same) */
 .pt-income::before{
   content:"";
   position:absolute;
@@ -52,9 +53,9 @@ const styles = `
   pointer-events:none;
 }
 
-/* ✅ mirror/glow removed:
-   - removed .pt-income::after
-   - removed @keyframes ptFloat
+/*  mirror/glow removed:
+   - no .pt-income::after
+   - no @keyframes ptFloat
 */
 
 .pt-row{
@@ -65,15 +66,15 @@ const styles = `
   z-index:1;
 }
 
-/* cards (keep same look, just remove mirror/glass shimmer) */
+/* cards (SAME look as Expense color-wise; no mirror shimmer layer) */
 .pt-card{
   border-radius: var(--r);
   border: 1px solid var(--stroke);
   background: var(--glass);
 
-  /* ✅ remove glass blur */
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
+
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 
   box-shadow: var(--shadow2);
   padding:18px;
@@ -82,7 +83,7 @@ const styles = `
   transition: transform 260ms var(--ease), box-shadow 260ms var(--ease), background 260ms var(--ease);
 }
 
-/* ✅ remove shimmer sweep */
+
 .pt-card::before{ content:none; }
 
 .pt-card:hover{
